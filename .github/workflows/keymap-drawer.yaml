@@ -3,18 +3,59 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build:
+  build-json:
+    runs-on: ubuntu-latest
+    container:
+      image: qmkfm/qmk-cli:latest
+      options: --entrypoint=sh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clone QMK firmware 
+        run: git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+        id: clone-qmk-firmware
+      - name: Symlink keyboard
+        id: Symlink keyboard
+        run: |
+            mkdir -p output
+            cd qmk-firmware/keyboards/projectcain
+            ln -s $GITHUB_WORKSPACE/vault35rp ./
+            qmkc2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
+            cd $GITHUB_WORKSPACE
+      - name: Cache QMK
+        uses: actions/cache@v4
+        id: cache-json
+        with:
+          path: qmk_firmware
+          key: qmk
+      - name: Cache JSON
+        uses: actions/cache@v4
+        id: cache-json
+        with:
+          path: output/keymap.json
+          key: keymap
+  build-svg:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/hnaderi/keymap-drawer:latest
       options: --entrypoint=sh
     steps:
       - uses: actions/checkout@v4
+      - name: Restore JSON
+        uses: actions/cache@v4
+        id: cache-json
+        with:
+          path: output/keymap.json
+          key: keymap
+      - name: Restore QMK
+        uses: actions/cache@v4
+        id: cache-json
+        with:
+          path: qmk-firmware
+          key: qmk
       - name: Create SVG file
         id: create-svg
         run: |
-          cd vault35rp
-          make build
+          keymap parse -c 4 -q output/keymap.json | keymap draw - -j vault35rp/info.json -l LAYOUT_wkl > output/keyboard.svg
       - uses: actions/upload-artifact@v4
         id: upload-svg
         with:
