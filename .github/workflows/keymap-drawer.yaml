@@ -18,27 +18,28 @@ jobs:
           repository: qmk/qmk_firmware
           submodules: recursive
           path: qmk
-     #- name: Symlink keyboard
-     #  id: symlink-keyboard
-     #  run: |
-     #       mkdir -p output
-     #       ls -R qmk
-     #       cd qmk/qmk-firmware/keyboards/projectcain
-     #       ln -s $GITHUB_WORKSPACE/vault35rp ./
-     #       qmkc2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
-     #       cd $GITHUB_WORKSPACE
-     #- name: Cache QMK
-     #  uses: actions/cache@v4
-     #  id: cache-qmk
-     #  with:
-     #    path: qmk
-     #    key: qmk
-     #- name: Cache JSON
-     #  uses: actions/cache@v4
-     #  id: cache-json
-     #  with:
-     #    path: output/keymap.json
-     #    key: keymap
+      - name: Symlink keyboard
+        id: symlink-keyboard
+        run: |
+             mkdir -p output
+             ls -R qmk
+             cd qmk/qmk-firmware/keyboards/projectcain
+             ln -s $GITHUB_WORKSPACE/vault35rp ./
+             qmk c2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
+             cd $GITHUB_WORKSPACE
+             cat $GITHUB_WORKSPACE/output/keymap.json
+      - name: Cache QMK
+        uses: actions/cache@v4
+        id: cache-qmk
+        with:
+          path: qmk
+          key: qmk
+      - name: Cache JSON
+        uses: actions/cache@v4
+        id: cache-json
+        with:
+          path: output/keymap.json
+          key: keymap
   #  build-svg:
   #    runs-on: ubuntu-latest
   #    container:
