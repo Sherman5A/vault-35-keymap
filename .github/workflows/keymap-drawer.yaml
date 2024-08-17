@@ -22,7 +22,7 @@ jobs:
         id: symlink-keyboard
         run: |
              mkdir -p output
-             cd qmk/qmk-firmware/keyboards/projectcain
+             ls qmk
              ln -s $GITHUB_WORKSPACE/vault35rp ./
              qmk c2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
              cd $GITHUB_WORKSPACE
