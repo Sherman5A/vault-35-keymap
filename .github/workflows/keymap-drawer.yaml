@@ -11,6 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        name: Clone vault35 firmware
       - run: mkdir -p qmk
       - uses: actions/checkout@v4
         name: Clone QMK firmware 
@@ -39,33 +40,34 @@ jobs:
         with:
           path: output/keymap.json
           key: keymap
-  #  build-svg:
-  #    runs-on: ubuntu-latest
-  #    container:
-  #      image: ghcr.io/hnaderi/keymap-drawer:latest
-  #      options: --entrypoint=sh
-  #    steps:
-  #      - uses: actions/checkout@v4
-  #      - name: Restore JSON
-  #        uses: actions/cache@v4
-  #        id: restore-json
-  #        with:
-  #          path: output/keymap.json
-  #          key: keymap
-  #      - name: Restore QMK
-  #        uses: actions/cache@v4
-  #        id: restore-qmk
-  #        with:
-  #          path: qmk
-  #          key: qmk
-  #      - name: Create SVG file
-  #        id: create-svg
-  #        run: |
-  #          keymap parse -c 4 -q output/keymap.json | keymap draw - -j vault35rp/info.json -l LAYOUT_wkl > output/keyboard.svg
-  #      - uses: actions/upload-artifact@v4
-  #        id: upload-svg
-  #        with:
-  #          name: output
-  #          path: |
-  #            vault35rp/output/*.svg
-  #
+  build-svg:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/hnaderi/keymap-drawer:latest
+      options: --entrypoint=sh
+    steps:
+      - uses: actions/checkout@v4
+        name: Clone vault35 firmware
+      - name: Restore JSON
+        uses: actions/cache@v4
+        id: restore-json
+        with:
+          path: output/keymap.json
+          key: keymap
+      - name: Restore QMK
+        uses: actions/cache@v4
+        id: restore-qmk
+        with:
+          path: qmk
+          key: qmk
+      - name: Create SVG file
+        id: create-svg
+        run: |
+          keymap parse -c 4 -q output/keymap.json | keymap draw - -j vault35rp/info.json -l LAYOUT_wkl > output/keyboard.svg
+      - uses: actions/upload-artifact@v4
+        id: upload-svg
+        with:
+          name: output
+          path: |
+            vault35rp/output/*.svg
+
