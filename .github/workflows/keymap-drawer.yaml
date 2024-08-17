@@ -69,5 +69,5 @@ jobs:
         with:
           name: output
           path: |
-            vault35rp/output/*.svg
+            output/*.svg
 
