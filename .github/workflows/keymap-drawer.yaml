@@ -8,7 +8,6 @@ jobs:
     container:
       image: qmkfm/qmk_cli:latest
       options: --entrypoint=sh --user root
-
     steps:
       - uses: actions/checkout@v4
         name: Clone vault35 firmware
@@ -42,6 +41,7 @@ jobs:
           key: keymap
   build-svg:
     runs-on: ubuntu-latest
+    needs: build-json
     container:
       image: ghcr.io/hnaderi/keymap-drawer:latest
       options: --entrypoint=sh
