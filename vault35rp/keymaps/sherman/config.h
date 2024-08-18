@@ -15,8 +15,9 @@
  */
 
 #pragma once
-#define COMBO_COUNT 9
 #define COMBO_TERM 50
+#define TAPPING_TERM 180
+#define TAPPING_TERM_PER_KEY
 #define TAPPING_FORCE_HOLD
 #define ENCODERS_PAD_A { 05 }
 #define ENCODERS_PAD_B { 04 }
@@ -34,3 +35,5 @@
 #define RGBLIGHT_EFFECT_KNIGHT
 #define RGBLIGHT_EFFECT_RGB_TEST
 #define RGBLIGHT_EFFECT_SNAKE
+// For keymapping
+#define ENABLE_COMPILE_KEYCODE
