@@ -28,13 +28,13 @@ jobs:
              cd $GITHUB_WORKSPACE
              cat $GITHUB_WORKSPACE/output/keymap.json
       - name: Cache QMK
-        uses: actions/cache@v4
+        uses: actions/cache/save@v4
         id: cache-qmk
         with:
           path: qmk
           key: qmk
       - name: Cache JSON
-        uses: actions/cache@v4
+        uses: actions/cache/save@v4
         id: cache-json
         with:
           path: output/keymap.json
