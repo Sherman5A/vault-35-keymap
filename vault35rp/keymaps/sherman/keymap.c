@@ -20,15 +20,16 @@ enum layer_names {
     _NAV,
     _PUN,
     _NUM,
-    _FUN
+    _FUN,
+    _KEY
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_wkl(
         KC_Q,            KC_W,            KC_E,            KC_R,            KC_T,    KC_Y,    KC_U,            KC_I,            KC_O,            KC_P,    KC_BSPC,
-        LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,    KC_H,    RCTL_T(KC_J),    RSFT_T(KC_K),    RALT_T(KC_L),    RGUI_T(KC_QUOTE),
+        LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,    KC_H,    RCTL_T(KC_J),    RSFT_T(KC_K),    RALT_T(KC_L),    RGUI_T(KC_SCLN),
         KC_Z,            KC_X,            KC_C,            KC_V,            KC_B,    KC_N,    KC_M,            KC_COMM,         KC_DOT,          KC_SLSH,
-        KC_1,                             MO(_NAV),                         KC_SPC,  KC_ENT,                   MO(_PUN),                         MO(_FUN)
+        MO(_FUN),                         MO(_NAV),                         KC_SPC,  KC_ENT,                   MO(_PUN),                         MO(_NUM)
     ),
     [_NAV] = LAYOUT_wkl(
         KC_Q,            KC_W,            KC_E,            KC_R,            KC_T,    KC_Y,    KC_U,            KC_I,            KC_O,            KC_P,    KC_BSPC,
@@ -49,10 +50,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,                             KC_2,                             KC_SPC,  KC_ENT,                   KC_5,            KC_6
     ),
     [_FUN] = LAYOUT_wkl(
-        QK_BOOT,         KC_W,            KC_E,            KC_R,            KC_T,    KC_Y,    KC_U,            KC_I,            KC_O,            KC_P,    KC_TRNS,
+        QK_BOOT,         EE_CLR,          KC_E,            KC_R,            KC_T,    KC_Y,    KC_U,            KC_I,            KC_O,            KC_P,    KC_TRNS,
         LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,    KC_H,    RCTL_T(KC_J),    RSFT_T(KC_K),    RALT_T(KC_L),    RGUI_T(KC_QUOTE),
         KC_Z,            KC_X,            KC_C,            KC_V,            KC_B,    KC_N,    KC_M,            KC_COMM,         KC_DOT,          KC_SLSH,
         KC_1,                             KC_2,                             KC_SPC,  KC_ENT,                   KC_5,            KC_6
+    ),
+    [_KEY] = LAYOUT_wkl(
+        QK_BOOT,         EE_CLR,          KC_E,            KC_R,            KC_T,    KC_Y,    KC_U,            KC_I,            KC_O,            KC_P,    KC_TRNS,
+        LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,    KC_H,    UG_PREV,         UG_VALD,         UG_VALU,         UG_NEXT,
+        KC_Z,            KC_X,            KC_C,            KC_V,            KC_B,    KC_N,    KC_M,            KC_COMM,         KC_DOT,          KC_SLSH,
+        KC_TRNS,                          KC_TRNS,                          UG_TOGG, KC_TRNS,                  KC_TRNS,         KC_TRNS 
     ),
 };
 
@@ -66,31 +73,28 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 #endif
 
 enum combos {
-    KL_SLSH,
-    JK_MINUS,
-    LQUOTE_ENTER,
+    // My combos
     QW_ESC,
+    MOFUN_MONUM_MOKEY,
+    PBSPC_CTRL_BSPC,
     AS_TAB,
-    FJ_LGUI,
+    LQUOTE_ENTER,
 };
 
-const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM lquote_combo[] = {KC_L, KC_QUOTE, COMBO_END};
+// My combos
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM as_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM fj_combo[] = {KC_F, KC_J, COMBO_END};
-const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM asdf_combo[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM fun_num_combo[] = {MO(_FUN), MO(_NUM), COMBO_END};
+const uint16_t PROGMEM pbspc_ctrlbspc_combo[] = {KC_P, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM as_combo[] = {LGUI_T(KC_A), LALT_T(KC_S), COMBO_END};
+const uint16_t PROGMEM lquote_combo[] = {RALT_T(KC_L), RGUI_T(KC_QUOTE), COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
-    [KL_SLSH] = COMBO(kl_combo, S(KC_SLSH)),
-    [JK_MINUS] = COMBO(jk_combo, KC_MINUS),
-    [LQUOTE_ENTER] = COMBO(lquote_combo, KC_ENTER),
+combo_t key_combos[] = {
+    // My combos
     [QW_ESC] = COMBO(qw_combo, KC_ESC),
+    [MOFUN_MONUM_MOKEY] = COMBO(fun_num_combo, MO(_KEY)),
+    [PBSPC_CTRL_BSPC] = COMBO(pbspc_ctrlbspc_combo, C(KC_BSPC)),
     [AS_TAB] = COMBO(as_combo, KC_TAB),
-    [FJ_LGUI] = COMBO(fj_combo, KC_LGUI),
+    [LQUOTE_ENTER] = COMBO(lquote_combo, KC_ENTER),
 };
 
 
