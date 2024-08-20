@@ -15,16 +15,43 @@
  */
 #include QMK_KEYBOARD_H
 
-// Tap dance
-/*
+enum layer_names {
+    _BASE,
+    _NAV,
+    _PUN,
+    _NUM,
+    _FUN,
+    _KEY
+};
+
+/* 
+ * // Tap dance
  * enum tap_dances {
- *     TD_QUOTE,
+ *     TD_NUM_FN,
  * };
- *
+ * 
+ * void td_num_fn_finished(tap_dance_state_t *state, void *user_data) {
+ *     if (state->count >= 2 && state->pressed) {
+ *         layer_on(_FUN);
+ *         return;
+ *     }
+ *     if (state->pressed) {
+ *         layer_on(_NUM);
+ *     }
+ * }
+ * 
+ * 
+ * void td_num_fn_reset(tap_dance_state_t *state, void *user_data) {
+ *     if (state->count >= 2) {
+ *         layer_off(_FUN);
+ *         return;
+ *     }
+ *     layer_off(_NUM);
+ * }
+ * 
  * tap_dance_action_t tap_dance_actions[] = {
- *     [TD_QUOTE] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_QUOT),
+ *     [TD_NUM_FN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fn_finished, td_num_fn_reset),
  * };
- *
  */
 
 // Custom Keycodes
@@ -51,14 +78,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-enum layer_names {
-    _BASE,
-    _NAV,
-    _PUN,
-    _NUM,
-    _FUN,
-    _KEY
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_wkl(
@@ -88,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FUN] = LAYOUT_wkl(
         KC_F12,        KC_F7,         KC_F8,         KC_F9,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO,
         KC_F11,        KC_F1,         KC_F2,         KC_F3,         KC_NO,     KC_NO,           KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
-        KC_F10,        KC_F4,         KC_F5,         KC_F6,         KC_NO, ,    KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
+        KC_F10,        KC_F4,         KC_F5,         KC_F6,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_KEY] = LAYOUT_wkl(
