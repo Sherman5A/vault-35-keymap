@@ -27,6 +27,30 @@
  *
  */
 
+// Custom Keycodes
+enum custom_keycodes {
+    SS_QAZ_PASTA = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SS_QAZ_PASTA:
+            if (record->event.pressed) {
+                SEND_STRING("You guys always kill me because it's like "
+                    "you come up with a funny idea for a keyboard meme "
+                    "product and then someone spends actual effort "
+                    "mocking it up or making a CAD model and then someone "
+                    "decides to actually make it and you spend real "
+                    "money on it because nobody had the sense to just " 
+                    "say \"this is actually stupid\" somewhere along "
+                    "the way."
+                );
+            }
+            break;
+    }
+    return true;
+}
+
 enum layer_names {
     _BASE,
     _NAV,
@@ -93,7 +117,8 @@ enum combos {
     M_COMM_LCBR,
     COMM_DOT_RCBR,
     AS_TAB,
-    SPACE_BSPC
+    SPACE_BSPC,
+    QAZ_PASTA
 };
 
 // My combos
@@ -105,6 +130,7 @@ const uint16_t PROGMEM m_comm_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM as_combo[] = {LGUI_T(KC_A), LALT_T(KC_S), COMBO_END};
 const uint16_t PROGMEM space_bspc_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM qaz_pasta_combo[] = {QK_BOOT, LGUI_T(KC_A), KC_Z, COMBO_END};
 
 combo_t key_combos[] = {
     // My combos
@@ -116,8 +142,18 @@ combo_t key_combos[] = {
     [COMM_DOT_RCBR] = COMBO(comm_dot_combo, KC_RCBR),
     [AS_TAB] = COMBO(as_combo, KC_TAB),
     [SPACE_BSPC] = COMBO(space_bspc_combo, KC_ENTER),
+    [QAZ_PASTA] = COMBO(qaz_pasta_combo, SS_QAZ_PASTA)
 };
 
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    switch (combo_index) {
+        case SS_QAZ_PASTA:
+            if (!layer_state_is(_KEY)) {
+                return false;
+            }
+    }
+    return true;
+}
 // Configs for keymap
 // uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 //     switch (keycode) {

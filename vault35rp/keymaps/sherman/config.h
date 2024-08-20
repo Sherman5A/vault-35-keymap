@@ -16,6 +16,7 @@
 
 #pragma once
 #define COMBO_TERM 50
+#define COMBO_SHOULD_TRIGGER
 #define TAPPING_TERM 180
 #define TAPPING_TERM_PER_KEY
 #define TAPPING_FORCE_HOLD
