@@ -19,7 +19,7 @@ jobs:
       - name: Install build tools
         run: |
           pipx install keymap-drawer
-          pipx install qmk-cli
+          pipx install qmk
       - name: Symlink keyboard
         id: symlink-keyboard
         run: |
