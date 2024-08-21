@@ -45,7 +45,7 @@ jobs:
         id: compile-firmware
         run: |
            cd $GITHUB_WORKSPACE/qmk
-           make projectcain/vault35rp:vial
+           make projectcain/vault35rp:sherman
       - uses: actions/upload-artifact@v4
         name: Uplaod firmware
         id: upload-firmware
