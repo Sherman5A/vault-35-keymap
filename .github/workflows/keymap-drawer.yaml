@@ -29,8 +29,7 @@ jobs:
           qmk c2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
           cd $GITHUB_WORKSPACE
           cat $GITHUB_WORKSPACE/output/keymap.json
-      - name: Create SVG file
-        name: Create SVG
+      - name: Create SVG
         id: create-svg
         run: |
           keymap parse -c 4 -q output/keymap.json | keymap draw - -j vault35rp/info.json -l LAYOUT_wkl > output/keyboard.svg
