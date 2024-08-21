@@ -37,7 +37,17 @@ jobs:
         name: Upload SVG
         id: upload-svg
         with:
-          name: output
+          name: svg-output
           path: |
             output/*.svg
-
+      - name: Compile firmware
+        id: compile-firmware
+        run: |
+          qmk compile -kb projectcain/vault35rp -km sherman
+      - uses: actions/upload-artifact@v4
+        name: Uplaod firmware
+        id: upload-firmware
+        with:
+          name: firmware-output
+          path: |
+           $GITHUB_WORKSPACE/qmk/*.uf2
