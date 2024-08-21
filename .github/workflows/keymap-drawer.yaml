@@ -20,6 +20,7 @@ jobs:
         run: |
           pipx install keymap-drawer
           pipx install qmk
+          qmk setup -H qmk --yes
       - name: Symlink keyboard
         id: symlink-keyboard
         run: |
