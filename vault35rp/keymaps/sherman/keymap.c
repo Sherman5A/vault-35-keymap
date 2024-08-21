@@ -212,6 +212,18 @@ void leader_end_user(void) {
         SEND_STRING_DELAY(WORK_EMAIL, 1);
     } else if (leader_sequence_three_keys(KC_U, KC_S, KC_W)) {
         SEND_STRING_DELAY(UNI_EMAIL, 1);
+    } else if (leader_sequence_two_keys(KC_P, KC_A)) {
+        SEND_STRING_DELAY("()", 1);
+    } else if (leader_sequence_two_keys(KC_P, KC_I)) {
+        SEND_STRING_DELAY("()" SS_TAP(X_LEFT), 1);
+    } else if (leader_sequence_two_keys(KC_B, KC_A)) {
+        SEND_STRING_DELAY("{}", 1);
+    } else if (leader_sequence_two_keys(KC_B, KC_I)) {
+        SEND_STRING_DELAY("{}" SS_TAP(X_LEFT), 1);
+    } else if (leader_sequence_three_keys(KC_B, KC_S, KC_A)) {
+        SEND_STRING_DELAY("[]", 1);
+    } else if (leader_sequence_three_keys(KC_B, KC_S, KC_I)) {
+        SEND_STRING_DELAY("[]" SS_TAP(X_LEFT), 1);
     }
 }
 #endif
