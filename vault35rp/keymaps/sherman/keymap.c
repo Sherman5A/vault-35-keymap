@@ -100,20 +100,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NUM] = LAYOUT_wkl(
         KC_DOT,        KC_7,          KC_8,          KC_9,          KC_MINS,   KC_Y,            KC_U,          KC_I,          KC_O,          KC_P,    KC_TRNS,
-        KC_COMM,       KC_1,          KC_2,          KC_3,          KC_0,      KC_COMM,         KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
-        KC_PERC,       KC_4,          KC_5,          KC_6,          KC_EQL,    KC_N,            KC_M,          KC_COMM,       KC_DOT,        KC_SLSH,
+        LGUI_T(KC_1),  LALT_T(KC_2),  LSFT_T(KC_3),  LCTL_T(KC_4),  KC_0,      KC_5,            RCTL_T(KC_6),  RSFT_T(KC_7),  RALT_T(KC_8),  RGUI_T(KC_9),
+        KC_PERC,       KC_4,          KC_5,          KC_6,          KC_EQL,    KC_N,            KC_M,          KC_COMM,       KC_DOT,        KC_TRNS,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_FUN] = LAYOUT_wkl(
-        KC_F12,        KC_F7,         KC_F8,         KC_F9,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO,
-        KC_F11,        KC_F1,         KC_F2,         KC_F3,         KC_NO,     KC_NO,           KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_F11,    KC_F12,          KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO,
+        LGUI_T(KC_F1), LALT_T(KC_F2), LSFT_T(KC_F3), LCTL_T(KC_F4), KC_F5,     KC_F6,           LCTL_T(KC_F7), LSFT_T(KC_F8), LALT_T(KC_F9), LGUI_T(KC_F10),
         KC_F10,        KC_F4,         KC_F5,         KC_F6,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_KEY] = LAYOUT_wkl(
         QK_BOOT,       EE_CLR,        KC_E,          KC_R,          KC_T,      KC_Y,            KC_U,          KC_I,          KC_O,          S(C(QK_MAKE)),  QK_MAKE,
         LGUI_T(KC_A),  LALT_T(KC_S),  LSFT_T(KC_D),  LCTL_T(KC_F),  KC_G,      UG_PREV,         UG_VALD,       UG_VALU,       UG_NEXT,       KC_TRNS,
-        KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,      KC_N,            KC_M,          KC_COMM,       KC_DOT,        KC_SLSH,
+        KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,      KC_N,            KC_M,          KC_COMM,       KC_DOT,        KC_NO,
         KC_TRNS,                      KC_TRNS,                      UG_TOGG,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
 };
@@ -127,8 +127,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 };
 #endif
 
+// My combos
 enum combos {
-    // My combos
     QW_ESC,
     MOFUN_MONUM_MOKEY,
     P_QUOT_RPRN,
@@ -140,7 +140,6 @@ enum combos {
     QAZ_PASTA
 };
 
-// My combos
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM fun_num_combo[] = {MO(_FUN), MO(_NUM), COMBO_END};
 const uint16_t PROGMEM p_quot_combo[] = {KC_P, KC_QUOT, COMBO_END};
@@ -152,7 +151,6 @@ const uint16_t PROGMEM space_bspc_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM qaz_pasta_combo[] = {QK_BOOT, LGUI_T(KC_A), KC_Z, COMBO_END};
 
 combo_t key_combos[] = {
-    // My combos
     [QW_ESC] = COMBO(qw_combo, KC_ESC),
     [MOFUN_MONUM_MOKEY] = COMBO(fun_num_combo, MO(_KEY)),
     [P_QUOT_RPRN] = COMBO(p_quot_combo, KC_RPRN),
@@ -182,4 +180,17 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 //             return TAPPING_TERM;
 //     };
 // };
+//
+
+#ifdef LEADER_ENABLE
+void vim_write(void) {
+    SEND_STRING(SS_TAP(X_ESC) ":w" SS_TAP(X_ENT));
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_W)) {
+        vim_write();
+    }
+}
+#endif
 
