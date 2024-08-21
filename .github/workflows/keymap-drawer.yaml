@@ -46,8 +46,9 @@ jobs:
         run: |
            cd $GITHUB_WORKSPACE/qmk
            make projectcain/vault35rp:sherman
+           ls $GITHUB_WORKSPACE/qmk/
       - uses: actions/upload-artifact@v4
-        name: Uplaod firmware
+        name: Upload firmware
         id: upload-firmware
         with:
           name: firmware-output
