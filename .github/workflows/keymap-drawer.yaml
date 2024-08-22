@@ -33,7 +33,14 @@ jobs:
       - name: Create SVG
         id: create-svg
         run: |
-          keymap parse -c 4 -q output/keymap.json | keymap draw - -j vault35rp/info.json -l LAYOUT_wkl > output/keyboard.svg
+          keymap parse -c 4 -q output/keymap.json > $GITHUB_WORKSPACE/output/keymap.yaml
+          keymap draw $GITHUB_WORKSPACE/output/keymap.yaml -j vault35rp/info.json -l LAYOUT_wkl > $GITHUB_WORKSPACE/output/keyboard.svg
+      - uses: actions/upload-artifact@v4
+        name: Upload YAML
+        id: upload-yaml
+        with:
+          name: yaml-output
+          path: output/*.yaml
       - uses: actions/upload-artifact@v4
         name: Upload SVG
         id: upload-svg
