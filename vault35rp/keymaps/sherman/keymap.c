@@ -208,9 +208,9 @@ void leader_end_user(void) {
         vim_write();
     } else if (leader_sequence_one_key(KC_E)) {
         SEND_STRING_DELAY(PERSONAL_EMAIL, 1);
-    } else if (leader_sequence_three_keys(KC_W, KC_R, KC_A)) {
+    } else if (leader_sequence_three_keys(KC_W, KC_R, KC_K)) {
         SEND_STRING_DELAY(WORK_EMAIL, 1);
-    } else if (leader_sequence_three_keys(KC_U, KC_S, KC_W)) {
+    } else if (leader_sequence_three_keys(KC_U, KC_N, KC_I)) {
         SEND_STRING_DELAY(UNI_EMAIL, 1);
     } else if (leader_sequence_two_keys(KC_P, KC_A)) {
         SEND_STRING_DELAY("()", 1);
