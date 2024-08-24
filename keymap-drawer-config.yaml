@@ -40,10 +40,14 @@ parse_config:
   preprocess: true
   skip_binding_parsing: false
   raw_binding_map: {
+    # Special keyboard keys
     "QK_BOOT": "$$mdi:bootstrap$$",
+    "QK_LEAD": "Leader",
+    "SS_QAZ_PASTA": "$$mdi:pasta$$",
+    # System keys
     "KC_SLEP": "$$mdi:power-sleep$$",
-    # Brightness
     "KC_PWR": "$$mdi:power$$",
+    # Brightness
     "KC_BRIU": "$$mdi:brightness-7$$",
     "KC_BRID": "$$mdi:brightness-5$$",
     # "UG_VALD": "$$material:backlight_low$$",
@@ -53,6 +57,9 @@ parse_config:
     "KC_VOLD": "$$mdi:volume-minus$$",
     "KC_VOLU": "$$mdi:volume-plus$$",
     "KC_MNXT": "$$mdi:skip-next$$",
+    "KC_MPRV": "$$mdi:skip-previous$$",
+    "KC_MPLY": "$$mdi:play-pause$$",
+    "KC_MUTE": "$$mdi:volume-mute$$",
     # Modifiers
     "KC_LGUI": "$$mdi:gentoo$$",
     "KC_LSFT": "$$mdi:apple-keyboard-shift$$",
@@ -62,7 +69,7 @@ parse_config:
     "KC_RSFT": "$$mdi:apple-keyboard-shift$$",
     "KC_RALT": "$$mdi:apple-keyboard-option$$",
     "KC_RCTL": "$$mdi:apple-keyboard-control$$",
-    # Arrow keys
+    # Navigation
     "KC_LEFT": "$$mdi:arrow-left-bold$$",
     "KC_RIGHT": "$$mdi:arrow-right-bold$$",
     "KC_UP": "$$mdi:arrow-up-bold$$",
@@ -71,7 +78,6 @@ parse_config:
     "KC_END": "End",
     "KC_PGDN": "PgDn",
     "KC_PGUP": "PgUp",
-    "QK_LEAD": "Leader"
   }
   sticky_label: sticky
   toggle_label: toggle
@@ -98,7 +104,10 @@ parse_config:
   - KC_
   qmk_keycode_map:
     # Custom keycodes 
-    # Brightness
+    EE_CLR:
+      t: $$mdi:memory$$
+      h: Clear
+    # Layer keys
     MO(_PUN):
       t: SYM
       h: MO
@@ -111,6 +120,7 @@ parse_config:
     MO(_NUM):
       t: NUM
       h: MO
+    # Keyboard backlight
     UG_VALD:
       t: $$material:backlight_high$$
       h: $$mdi:chevron-down$$
@@ -126,7 +136,6 @@ parse_config:
     KC_SPC: $$mdi:keyboard-space$$
     KC_BSPC: $$mdi:backspace$$
     KC_BSPC: $$mdi:backspace$$
-    LGUI_T(&): test
     # Defaults
     XXXXXXX: ''
     'NO': ''

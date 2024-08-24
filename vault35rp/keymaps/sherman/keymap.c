@@ -90,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_NAV),                     MO(_NUM),                     KC_SPC,    KC_BSPC,                        MO(_PUN),                     MO(_FUN)
     ),
     [_NAV] = LAYOUT_wkl(
-        KC_Q,          KC_W,          KC_E,          KC_R,          KC_T,      KC_Y,            KC_U,          KC_PGUP,       KC_O,          KC_P,    KC_TRNS,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_PGUP,       KC_NO,         KC_NO,   KC_NO,
         KC_LGUI,       KC_LALT,       KC_LSFT,       KC_LCTL,       KC_HOME,   KC_LEFT,         KC_DOWN,       KC_UP,         KC_RIGHT,      KC_END,
-        KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,      KC_N,            KC_PGDN,       KC_COMM,       KC_DOT,        KC_SLSH,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_PGDN,       KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_PUN] = LAYOUT_wkl(
@@ -114,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_KEY] = LAYOUT_wkl(
-        QK_BOOT,       KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_BRIU,       KC_NO,         KC_PWR,  KC_SLEP,
-        KC_A,          KC_VOLD,       KC_VOLU,       KC_MNXT,       KC_NO,     UG_PREV,         UG_VALD,       UG_VALU,       UG_NEXT,       KC_NO,
-        KC_Z,          SS_QAZ_PASTA,  EE_CLR,        KC_NO,         KC_NO,     KC_NO,           KC_BRID,       KC_COMM,       KC_DOT,        KC_NO,
+        QK_BOOT,       KC_MUTE,       KC_MPLY,       KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_BRIU,       KC_NO,         KC_PWR,  KC_SLEP,
+        KC_MPRV,       KC_VOLD,       KC_VOLU,       KC_MNXT,       KC_NO,     UG_PREV,         UG_VALD,       UG_VALU,       UG_NEXT,       KC_NO,
+        KC_NO,         SS_QAZ_PASTA,  EE_CLR,        KC_NO,         KC_NO,     KC_NO,           KC_BRID,       KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      UG_TOGG,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
 };
