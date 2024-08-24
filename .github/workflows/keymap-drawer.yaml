@@ -29,25 +29,22 @@ jobs:
           ln -s $GITHUB_WORKSPACE/vault35rp ./
           qmk c2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
           cd $GITHUB_WORKSPACE
-          cat $GITHUB_WORKSPACE/output/keymap.json
       - name: Create SVG
         id: create-svg
-        run: |
-          keymap parse -c 4 -q output/keymap.json > $GITHUB_WORKSPACE/output/keymap.yaml
-          keymap draw $GITHUB_WORKSPACE/output/keymap.yaml -j vault35rp/info.json -l LAYOUT_wkl > $GITHUB_WORKSPACE/output/keyboard.svg
+        run: make -C vault35rp/keymaps/sherman/ build-svg
       - uses: actions/upload-artifact@v4
         name: Upload YAML
         id: upload-yaml
         with:
           name: yaml-output
-          path: output/*.yaml
+          path: vault35rp/output/*.yaml
       - uses: actions/upload-artifact@v4
         name: Upload SVG
         id: upload-svg
         with:
           name: svg-output
           path: |
-            output/*.svg
+            vault35rp/output/*.svg
       - name: Compile firmware
         id: compile-firmware
         run: |
