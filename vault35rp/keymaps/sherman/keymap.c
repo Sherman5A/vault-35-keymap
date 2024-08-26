@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_NAV),                     MO(_NUM),                     KC_SPC,    KC_BSPC,                        MO(_PUN),                     MO(_FUN)
     ),
     [_NAV] = LAYOUT_wkl(
-        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_PGUP,       KC_NO,         KC_NO,   KC_NO,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_PGUP,       KC_PSCR,       KC_INS,  KC_DEL,
         KC_LGUI,       KC_LALT,       KC_LSFT,       KC_LCTL,       KC_HOME,   KC_LEFT,         KC_DOWN,       KC_UP,         KC_RIGHT,      KC_END,
         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_PGDN,       KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FUN] = LAYOUT_wkl(
         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_F11,    KC_F12,          KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO,
         LGUI_T(KC_F1), LALT_T(KC_F2), LSFT_T(KC_F3), LCTL_T(KC_F4), KC_F5,     KC_F6,           LCTL_T(KC_F7), LSFT_T(KC_F8), LALT_T(KC_F9), LGUI_T(KC_F10),
-        KC_F10,        KC_F4,         KC_F5,         KC_F6,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_KEY] = LAYOUT_wkl(
@@ -166,8 +166,8 @@ combo_t key_combos[] = {
     [MOFUN_MONUM_MOKEY] = COMBO(fun_num_combo, MO(_KEY)),
     [P_QUOT_RPRN] = COMBO(p_quot_combo, KC_RPRN),
     [O_P_LPRN] = COMBO(o_p_combo, KC_LPRN),
-    [M_COMM_LCBR] = COMBO(m_comm_combo, KC_LCBR),
-    [COMM_DOT_RCBR] = COMBO(comm_dot_combo, KC_RCBR),
+    [M_COMM_LCBR] = COMBO(m_comm_combo, KC_LBRC),
+    [COMM_DOT_RCBR] = COMBO(comm_dot_combo, KC_RBRC),
     [AS_TAB] = COMBO(as_combo, KC_TAB),
     [SPACE_BSPC] = COMBO(space_bspc_combo, KC_ENTER),
     [QAZ_PASTA] = COMBO(qaz_pasta_combo, SS_QAZ_PASTA),
@@ -176,6 +176,7 @@ combo_t key_combos[] = {
     [Z_V_PASTE] = COMBO(z_v_combo, C(KC_V)),
     [NUM_PUN_LEADER] = COMBO(leader_combo, QK_LEAD),
 };
+
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
@@ -187,16 +188,26 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     }
     return true;
 }
-// Configs for keymap
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) {
-//         case TD(TD_QUOTE):
-//             return 165;
-//         default:
-//             return TAPPING_TERM;
-//     };
-// };
-//
+
+// Tap term timings
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Pinky keys
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S):
+        case RALT_T(KC_L):
+        case RGUI_T(KC_SCLN):
+        case LGUI_T(KC_0):
+        case LALT_T(KC_1):
+        case RALT_T(KC_8):
+        case RGUI_T(KC_9):
+            return 170;
+        // All other keys
+        default:
+            return TAPPING_TERM;
+    };
+};
+
 
 #ifdef LEADER_ENABLE
 void vim_write(void) {

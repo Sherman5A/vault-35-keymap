@@ -6,8 +6,8 @@ combos:
   - {p: [21, 22], k: "Cut", l: ["BASE"], s: 0.25}
   - {p: [21, 23], k: "Copy", l: ["BASE"], align: bottom, o: 0.5, s: -0.05, w: 40}
   - {p: [21, 24], k: "Paste", l: ["BASE"], align: bottom, o: 1.25, s: -0.32, w: 40}
-  - {p: [28, 29], k: "}", l: ["BASE"]}
-  - {p: [27, 28], k: "{", l: ["BASE"]}
+  - {p: [28, 29], k: "]", l: ["BASE"]}
+  - {p: [27, 28], k: "[", l: ["BASE"]}
   - {p: [33, 34], k: $$mdi:keyboard-return$$, l: ["BASE"], w: 50}
   - {p: [32, 35], k: Leader, l: ["BASE"], a: bottom, o: 0.6, w: 50}
   - {p: [31, 36], k: KEY, l: ["BASE"], a: bottom, o: 1.25}

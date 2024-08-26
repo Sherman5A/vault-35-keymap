@@ -15,9 +15,10 @@
  */
 
 #pragma once
+// #define PERMISSIVE_HOLD
 #define COMBO_TERM 50
 #define COMBO_SHOULD_TRIGGER
-#define TAPPING_TERM 180
+#define TAPPING_TERM 145
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM_PER_KEY
 #define LEADER_TIMEOUT 300
