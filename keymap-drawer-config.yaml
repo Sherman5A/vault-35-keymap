@@ -78,6 +78,11 @@ parse_config:
     "KC_END": "End",
     "KC_PGDN": "PgDn",
     "KC_PGUP": "PgUp",
+    # Text editing
+    "KC_INS": "Ins",
+    "KC_DEL": "Del",
+    # Other
+    "KC_PSCR": "$$mdi:monitor-screenshot$$"
   }
   sticky_label: sticky
   toggle_label: toggle

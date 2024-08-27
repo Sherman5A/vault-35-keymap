@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_PUN] = LAYOUT_wkl(
         KC_EXLM,       KC_AT,         KC_HASH,       KC_AMPR,       KC_ASTR,   KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_TRNS,
         KC_DLR,        KC_PERC,       KC_MINS,       KC_EQL,        KC_PLUS,   KC_CIRC,         KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
-        KC_BSLS,       KC_GRV,        KC_TILD,       KC_PIPE,       KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_SLSH,
+        KC_BSLS,       KC_GRV,        KC_TILD,       KC_PIPE,       KC_NO,     KC_NO,           KC_NO,         KC_TRNS,       KC_TRNS,       KC_TRNS,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_NUM] = LAYOUT_wkl(
