@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NUM] = LAYOUT_wkl(
         KC_MINS,       KC_7,          KC_8,          KC_9,          KC_PLUS,   KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_TRNS,
-        LGUI_T(KC_0),  LALT_T(KC_1),  LSFT_T(KC_2),  LCTL_T(KC_3),  KC_4,      KC_5,            RCTL_T(KC_6),  RSFT_T(KC_7),  RALT_T(KC_8),  RGUI_T(KC_9),
+        LGUI_T(KC_1),  LALT_T(KC_2),  LSFT_T(KC_3),  LCTL_T(KC_4),  KC_5,      KC_6,            RCTL_T(KC_7),  RSFT_T(KC_8),  RALT_T(KC_9),  RGUI_T(KC_0),
         KC_ASTR,       KC_4,          KC_5,          KC_6,          KC_EQL,    KC_NO,           KC_NO,         KC_TRNS,       KC_TRNS,       KC_TRNS,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        QK_LEAD,                      KC_TRNS
     ),
