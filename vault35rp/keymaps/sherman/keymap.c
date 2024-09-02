@@ -201,7 +201,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_1):
         case RALT_T(KC_8):
         case RGUI_T(KC_9):
-            return 170;
+            return 180;
         // All other keys
         default:
             return TAPPING_TERM;
