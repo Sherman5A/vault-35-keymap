@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "keymap_us.h"
 #include QMK_KEYBOARD_H
 #include "emails.h"
 
@@ -84,37 +85,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_wkl(
-        KC_Q,          KC_W,          KC_E,          KC_R,          KC_T,      KC_Y,            KC_U,          KC_I,          KC_O,          KC_P,    KC_QUOT,
+        KC_Q,          KC_W,          KC_E,          KC_R,          KC_T,      KC_Y,            KC_U,          KC_I,          KC_O,          KC_P,     KC_QUOT,
         LGUI_T(KC_A),  LALT_T(KC_S),  LSFT_T(KC_D),  LCTL_T(KC_F),  KC_G,      KC_H,            RCTL_T(KC_J),  RSFT_T(KC_K),  RALT_T(KC_L),  RGUI_T(KC_SCLN),
         KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,      KC_N,            KC_M,          KC_COMM,       KC_DOT,        KC_SLSH,
         MO(_NAV),                     MO(_NUM),                     KC_SPC,    KC_BSPC,                        MO(_PUN),                     MO(_FUN)
     ),
     [_NAV] = LAYOUT_wkl(
-        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_PGUP,       KC_PSCR,       KC_INS,  KC_DEL,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_PGUP,       KC_NO,         KC_PSCR,       KC_INS,   KC_DEL,
         KC_LGUI,       KC_LALT,       KC_LSFT,       KC_LCTL,       KC_HOME,   KC_LEFT,         KC_DOWN,       KC_UP,         KC_RIGHT,      KC_END,
         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_PGDN,       KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_PUN] = LAYOUT_wkl(
-        KC_EXLM,       KC_AT,         KC_HASH,       KC_AMPR,       KC_ASTR,   KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_TRNS,
-        KC_DLR,        KC_PERC,       KC_MINS,       KC_EQL,        KC_PLUS,   KC_CIRC,         KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
-        KC_BSLS,       KC_GRV,        KC_TILD,       KC_PIPE,       KC_NO,     KC_NO,           KC_NO,         KC_TRNS,       KC_TRNS,       KC_TRNS,
+        KC_EXLM,       KC_AT,         KC_HASH,       KC_DLR,        KC_DLR,    KC_PERC,         KC_CIRC,       KC_AMPR,       KC_ASTR,       KC_DQUO,  KC_QUOT,
+        KC_UNDS,       KC_MINS,       KC_PLUS,       KC_EQL,        KC_SLASH,  KC_NO,           KC_LCTL,       KC_LSFT,       KC_LALT,       KC_LGUI,
+        KC_PIPE,       KC_BSLS,       KC_TILD,       KC_GRV,        KC_NO,     KC_NO,           KC_NO,         KC_LABK,       KC_RABK,       KC_QUES,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_NUM] = LAYOUT_wkl(
-        KC_MINS,       KC_7,          KC_8,          KC_9,          KC_PLUS,   KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_TRNS,
+        KC_NO,         KC_7,          KC_8,          KC_9,          KC_NO,     KC_UNDS,         KC_MINS,       KC_PLUS,       KC_ASTR,       KC_SLASH, KC_EQL,
         LGUI_T(KC_1),  LALT_T(KC_2),  LSFT_T(KC_3),  LCTL_T(KC_4),  KC_5,      KC_6,            RCTL_T(KC_7),  RSFT_T(KC_8),  RALT_T(KC_9),  RGUI_T(KC_0),
-        KC_ASTR,       KC_4,          KC_5,          KC_6,          KC_EQL,    KC_NO,           KC_NO,         KC_TRNS,       KC_TRNS,       KC_TRNS,
+        KC_NO,         KC_4,          KC_5,          KC_6,          KC_NO,     KC_NO,           KC_NO,         KC_TRNS,       KC_TRNS,       KC_TRNS,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        QK_LEAD,                      KC_TRNS
     ),
     [_FUN] = LAYOUT_wkl(
-        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_F11,    KC_F12,          KC_NO,         KC_NO,         KC_NO,         KC_NO,   KC_NO,
+        KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_F11,    KC_F12,          KC_NO,         KC_NO,         KC_NO,         KC_NO,    KC_NO,
         LGUI_T(KC_F1), LALT_T(KC_F2), LSFT_T(KC_F3), LCTL_T(KC_F4), KC_F5,     KC_F6,           LCTL_T(KC_F7), LSFT_T(KC_F8), LALT_T(KC_F9), LGUI_T(KC_F10),
         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      KC_TRNS,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
     ),
     [_KEY] = LAYOUT_wkl(
-        QK_BOOT,       KC_MUTE,       KC_MPLY,       KC_NO,         KC_NO,     KC_NO,           KC_NO,         KC_BRIU,       KC_NO,         KC_PWR,  KC_SLEP,
+        QK_BOOT,       KC_MUTE,       KC_MPLY,       KC_NO,         KC_NO,     KC_NO,           KC_BRIU,       KC_NO,         KC_NO,         KC_PWR,   KC_SLEP,
         KC_MPRV,       KC_VOLD,       KC_VOLU,       KC_MNXT,       KC_NO,     UG_PREV,         UG_VALD,       UG_VALU,       UG_NEXT,       KC_NO,
         KC_NO,         SS_QAZ_PASTA,  EE_CLR,        KC_NO,         KC_NO,     KC_NO,           KC_BRID,       KC_NO,         KC_NO,         KC_NO,
         KC_TRNS,                      KC_TRNS,                      UG_TOGG,   KC_TRNS,                        KC_TRNS,                      KC_TRNS
@@ -238,4 +239,3 @@ void leader_end_user(void) {
     }
 }
 #endif
-
