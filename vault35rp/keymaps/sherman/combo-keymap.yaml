@@ -1,13 +1,13 @@
 combos:
   - {p: [0, 1], k: $$mdi:keyboard-esc$$, l: ["BASE"]}
-  - {p: [2, 14], k: (, l: ["BASE"]}
-  - {p: [7, 17], k: ), l: ["BASE"]}
+  - {p: [2, 14], k: (, l: ["BASE"], draw_separate: true}
+  - {p: [7, 17], k: ), l: ["BASE"], draw_separate: true}
   - {p: [11, 12], k: $$mdi:keyboard-tab$$, l: ["BASE"]}
   - {p: [21, 22], k: "Cut", l: ["BASE"], s: 0.25}
   - {p: [21, 23], k: "Copy", l: ["BASE"], align: bottom, o: 0.5, s: -0.05, w: 40}
   - {p: [21, 24], k: "Paste", l: ["BASE"], align: bottom, o: 1.25, s: -0.32, w: 40}
-  - {p: [13, 24], k: "[", l: ["BASE"]}
-  - {p: [18, 26], k: "]", l: ["BASE"]}
+  - {p: [13, 24], k: "[", l: ["BASE"], draw_separate: true}
+  - {p: [18, 26], k: "]", l: ["BASE"], draw_separate: true}
   - {p: [2, 3], k: "{", l: ["BASE"]}
   - {p: [6, 7], k: "}", l: ["BASE"]}
   - {p: [33, 34], k: $$mdi:keyboard-return$$, l: ["BASE"], w: 50}
