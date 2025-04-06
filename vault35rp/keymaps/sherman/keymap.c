@@ -13,7 +13,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "keycodes.h"
 #include "keymap_us.h"
+#include "process_combo.h"
+#include "progmem.h"
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "emails.h"
 
@@ -135,8 +139,12 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 enum combos {
     QW_ESC,
     MOFUN_MONUM_MOKEY,
-    P_QUOT_RPRN,
-    O_P_LPRN,
+    F_E_LPRN,
+    J_I_RPRN,
+    D_V_LBRC,
+    K_N_RBRC,
+    E_R_LCBR,
+    U_I_RCBR,
     M_COMM_LCBR,
     COMM_DOT_RCBR,
     AS_TAB,
@@ -150,8 +158,12 @@ enum combos {
 
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM fun_num_combo[] = {MO(_NAV), MO(_FUN), COMBO_END};
-const uint16_t PROGMEM p_quot_combo[] = {KC_P, KC_QUOT, COMBO_END};
-const uint16_t PROGMEM o_p_combo[] = {KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM f_e_combo[] = {LCTL_T(KC_F), KC_E, COMBO_END};
+const uint16_t PROGMEM j_i_combo[] = {RCTL_T(KC_J), KC_I, COMBO_END};
+const uint16_t PROGMEM d_v_combo[] = {LSFT_T(KC_D), KC_V, COMBO_END};
+const uint16_t PROGMEM k_n_combo[] = {RSFT_T(KC_K), KC_N, COMBO_END};
+const uint16_t PROGMEM e_r_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM u_i_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM m_comm_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM as_combo[] = {LGUI_T(KC_A), LALT_T(KC_S), COMBO_END};
@@ -165,8 +177,12 @@ const uint16_t PROGMEM leader_combo[] = {MO(_NUM), MO(_PUN), COMBO_END};
 combo_t key_combos[] = {
     [QW_ESC] = COMBO(qw_combo, KC_ESC),
     [MOFUN_MONUM_MOKEY] = COMBO(fun_num_combo, MO(_KEY)),
-    [P_QUOT_RPRN] = COMBO(p_quot_combo, KC_RPRN),
-    [O_P_LPRN] = COMBO(o_p_combo, KC_LPRN),
+    [F_E_LPRN] = COMBO(f_e_combo, KC_LPRN),
+    [J_I_RPRN] = COMBO(j_i_combo, KC_RPRN),
+    [D_V_LBRC] = COMBO(d_v_combo, KC_LBRC),
+    [K_N_RBRC] = COMBO(k_n_combo, KC_RBRC),
+    [E_R_LCBR] = COMBO(e_r_combo, KC_LCBR),
+    [U_I_RCBR] = COMBO(u_i_combo, KC_RCBR),
     [M_COMM_LCBR] = COMBO(m_comm_combo, KC_LBRC),
     [COMM_DOT_RCBR] = COMBO(comm_dot_combo, KC_RBRC),
     [AS_TAB] = COMBO(as_combo, KC_TAB),
@@ -177,7 +193,6 @@ combo_t key_combos[] = {
     [Z_V_PASTE] = COMBO(z_v_combo, C(KC_V)),
     [NUM_PUN_LEADER] = COMBO(leader_combo, QK_LEAD),
 };
-
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
