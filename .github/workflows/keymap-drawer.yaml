@@ -24,14 +24,18 @@ jobs:
       - name: Symlink keyboard
         id: symlink-keyboard
         run: |
-          mkdir -p output
+          mkdir p output
           cd qmk/keyboards/projectcain
           ln -s $GITHUB_WORKSPACE/vault35rp ./
-          qmk c2json -km sherman -kb projectcain/vault35rp > $GITHUB_WORKSPACE/output/keymap.json
-          cd $GITHUB_WORKSPACE
+      - name: Generate keymap json
+        id: gen-keymap-json
+        run: |
+          qmk c2json -kb projectcain/vault35rp -km sherman --no-cpp > $GITHUB_WORKSPACE/output/keymap.json
       - name: Create SVG
         id: create-svg
-        run: make -C vault35rp/keymaps/sherman/ build-svg
+        run: |
+          cd $GITHUB_WORKSPACE
+          make -C vault35rp/keymaps/sherman/ build-svg
       - uses: actions/upload-artifact@v4
         name: Upload YAML
         id: upload-yaml
